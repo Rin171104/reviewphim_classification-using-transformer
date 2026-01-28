@@ -1,60 +1,60 @@
-# IMDB Movie Review Classification with Transformer
+# Phân Loại Đánh Giá Phim IMDB với Transformer
 
-This project implements a Transformer-based model for sentiment classification (Positive/Negative) on the IMDB Movie Review dataset using PyTorch.
+Dự án này triển khai một mô hình dựa trên kiến trúc Transformer để phân loại cảm xúc (Tích cực/Tiêu cực) trên bộ dữ liệu IMDB Movie Review sử dụng PyTorch.
 
-## Project Structure
+## Cấu Trúc Dự Án
 
-- `dataset.py`: Handles data loading, preprocessing, and `IMDBDataModule` preparation.
-- `model.py`: Defines the Transformer model architecture including `PositionalEncoding`, `TransformerEncoderBlock`, and `TransformerClassifier`.
-- `train.py`: Main script for training the model, evaluating, and saving checkpoints.
-- `requirements.txt`: List of Python dependencies.
+- `dataset.py`: Xử lý tải dữ liệu, tiền xử lý và chuẩn bị `IMDBDataModule`.
+- `model.py`: Định nghĩa kiến trúc mô hình Transformer bao gồm `PositionalEncoding`, `TransformerEncoderBlock`, và `TransformerClassifier`.
+- `train.py`: Script chính để huấn luyện mô hình, đánh giá và lưu các checkpoint.
+- `requirements.txt`: Danh sách các thư viện Python cần thiết.
 
-## Requirements
+## Yêu Cầu
 
-Install the necessary dependencies using pip:
+Cài đặt các thư viện cần thiết bằng pip:
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Dataset
+## Dữ Liệu
 
-The project expects the IMDB Dataset in CSV format (`IMDB Dataset.csv`). Ensure you have the dataset available. The default path in `train.py` might need to be adjusted or passed as an argument if it's not in the expected location.
+Dự án yêu cầu bộ dữ liệu IMDB ở định dạng CSV (`IMDB Dataset.csv`). Hãy đảm bảo bạn đã có bộ dữ liệu này. Đường dẫn mặc định trong `train.py` có thể cần được điều chỉnh hoặc truyền vào như một tham số nếu tệp không nằm ở vị trí mặc định.
 
-## Usage
+## Cách Sử Dụng
 
-### Training the Model
+### Huấn Luyện Mô Hình
 
-You can start training by running `train.py`. You can adjust hyperparameters using command-line arguments.
+Bạn có thể bắt đầu huấn luyện bằng cách chạy `train.py`. Bạn có thể điều chỉnh các siêu tham số thông qua các tham số dòng lệnh.
 
 ```bash
 python train.py --csv-path "IMDB Dataset.csv" --epochs 20 --batch-size 64
 ```
 
-**Arguments:**
+**Các tham số:**
 
-- `--csv-path`: Path to the IMDB dataset CSV file.
-- `--epochs`: Number of training epochs (default: 20).
-- `--batch-size`: Batch size for training (default: 64).
-- `--num-words`: Vocabulary size (default: 500).
-- `--maxlen`: Maximum sequence length (default: 500).
-- `--logging`: Directory for TensorBoard logs (default: "tensorboard").
-- `--trained-models`: Directory to save trained models (default: "trained-models").
-- `--checkpoint`: Path to a checkpoint to resume training from (optional).
+- `--csv-path`: Đường dẫn đến tệp CSV dữ liệu IMDB.
+- `--epochs`: Số lượng epoch huấn luyện (mặc định: 20).
+- `--batch-size`: Kích thước batch cho huấn luyện (mặc định: 64).
+- `--num-words`: Kích thước tập từ vựng (mặc định: 500).
+- `--maxlen`: Độ dài tối đa của chuỗi (mặc định: 500).
+- `--logging`: Thư mục chứa log TensorBoard (mặc định: "tensorboard").
+- `--trained-models`: Thư mục để lưu các mô hình đã huấn luyện (mặc định: "trained-models").
+- `--checkpoint`: Đường dẫn đến checkpoint để tiếp tục huấn luyện (tùy chọn).
 
-## Logging
+## Theo Dõi Log
 
-Training progress and metrics are logged using TensorBoard. You can view the logs by running:
+Tiến độ huấn luyện và các chỉ số được ghi lại bằng TensorBoard. Bạn có thể xem log bằng cách chạy:
 
 ```bash
 tensorboard --logdir tensorboard
 ```
 
-## Model Architecture
+## Kiến Trúc Mô Hình
 
-The model consists of:
-1.  **Embedding Layer**: Converts token indices to dense vectors.
-2.  **Positional Encoding**: Adds positional information to the embeddings.
-3.  **Transformer Encoder Blocks**: Multi-head attention and feed-forward networks with normalization and dropout.
-4.  **Global Average Pooling**: Aggregates the sequence of vectors.
-5.  **Classifier Head**: Fully connected layers to predict the sentiment.
+Mô hình bao gồm:
+1.  **Lớp Embedding**: Chuyển đổi các chỉ số token thành các vector dense.
+2.  **Positional Encoding**: Thêm thông tin vị trí vào các embedding.
+3.  **Transformer Encoder Blocks**: Multi-head attention và mạng feed-forward với normalization và dropout.
+4.  **Global Average Pooling**: Tổng hợp chuỗi các vector.
+5.  **Classifier Head**: Các lớp fully connected để dự đoán cảm xúc.
